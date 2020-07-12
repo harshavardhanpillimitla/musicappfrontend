@@ -128,7 +128,7 @@ export const createplaylist = (data, headers) =>
   actions.apicallbegan({
     method: "POST",
     url: "/createplaylist/",
-    onSuccess: responseplaylistReceived.type.type,
+    onSuccess: responseplaylistReceived.type,
     data,
     headers,
   });
