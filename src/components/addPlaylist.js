@@ -9,7 +9,7 @@ class AddPlaylist extends Component {
   };
   componentDidUpdate() {
     if (this.props.success) {
-      this.props.history.replace("/home");
+      this.props.history.replace("/");
     }
   }
 
