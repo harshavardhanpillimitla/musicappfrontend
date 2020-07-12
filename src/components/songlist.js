@@ -20,7 +20,6 @@ class SongList extends Component {
   addtoplaylist = (songs) => {
     const jwt = this.props.user.token;
     const playlistid = this.props.state.id;
-    alert(playlistid);
 
     if (jwt) {
       try {
