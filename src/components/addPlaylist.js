@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import { createplaylist } from "../store/postSlice";
+import { createplaylist, adddummydatatoplaylist } from "../store/postSlice";
 
 class AddPlaylist extends Component {
   state = {
@@ -9,6 +9,22 @@ class AddPlaylist extends Component {
   };
   componentDidUpdate() {
     if (this.props.success) {
+      const jwt = this.props.user.token;
+      const id = this.props.playlistjustcreated.id;
+
+      if (jwt) {
+        try {
+          const headers = {
+            "Content-Type": "application/json",
+            Authorization: `JWT ${jwt}`,
+          };
+          let data = this.state;
+          this.props.dispatch(adddummydatatoplaylist(data, headers, id));
+        } catch (error) {
+          console.log(error.response);
+        }
+      }
+
       this.props.history.replace("/");
     }
   }
@@ -69,6 +85,7 @@ const mapStateToProps = (state) => {
   return {
     authenticated: state.isAuthenticated,
     success: state.justUpdated,
+    playlistjustcreated: state.responseplaylist,
     user: state.user,
 
     last: state.error,

@@ -11,6 +11,7 @@ const initialState = {
   isAuthenticated: false,
   justUpdated: false,
   error: "",
+  responseplaylist: [],
 };
 const slice = createSlice({
   name: "posts",
@@ -50,7 +51,12 @@ const slice = createSlice({
       return initialState;
     },
     errorOccoured: (posts, action) => {
-      posts.error = action.payload.out;
+      posts.error = action.payload;
+    },
+    responseplaylistReceived: (state, action) => {
+      state.responseplaylist = action.payload;
+      state.justUpdated = true;
+      state.searched = [];
     },
   },
 });
@@ -63,6 +69,7 @@ export const {
   songresults,
   currentplaylist,
   errorOccoured,
+  responseplaylistReceived,
 } = slice.actions;
 
 //authentication related
@@ -121,7 +128,7 @@ export const createplaylist = (data, headers) =>
   actions.apicallbegan({
     method: "POST",
     url: "/createplaylist/",
-    onSuccess: changePosts.type,
+    onSuccess: responseplaylistReceived.type.type,
     data,
     headers,
   });
@@ -164,6 +171,13 @@ export const getplaylistdataforupdate = (headers, id) =>
     url: `/addtoplaylist/${id}/`,
     headers,
     onSuccess: currentplaylist.type,
+  });
+export const adddummydatatoplaylist = (data, headers, id) =>
+  actions.apicallbegan({
+    method: "PATCH",
+    url: `/addtoplaylist/${id}/`,
+    data: data,
+    headers,
   });
 
 export default slice.reducer;
