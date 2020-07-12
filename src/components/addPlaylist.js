@@ -8,7 +8,7 @@ class AddPlaylist extends Component {
     playlist_name: "",
   };
   componentDidUpdate() {
-    if (this.props.success) {
+    if (this.props.playlistjustcreatedflag) {
       const jwt = this.props.user.token;
       const { id } = this.props.playlistjustcreated;
 
@@ -27,7 +27,8 @@ class AddPlaylist extends Component {
           console.log(error.response);
         }
       }
-
+    }
+    if (this.props.success) {
       this.props.history.replace("/home");
     }
   }
@@ -90,6 +91,7 @@ const mapStateToProps = (state) => {
     success: state.justUpdated,
     playlistjustcreated: state.responseplaylist,
     user: state.user,
+    playlistjustcreatedflag: state.playlistcreated,
 
     last: state.error,
   };

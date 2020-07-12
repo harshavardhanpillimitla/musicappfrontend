@@ -11,6 +11,7 @@ const initialState = {
   isAuthenticated: false,
   justUpdated: false,
   error: "",
+  playlistcreated: false,
   responseplaylist: [],
 };
 const slice = createSlice({
@@ -41,6 +42,7 @@ const slice = createSlice({
     },
     changePosts: (posts, action) => {
       posts.justUpdated = true;
+      posts.playlistcreated = false;
       posts.searched = [];
     },
     songresults: (state, action) => {
@@ -55,7 +57,7 @@ const slice = createSlice({
     },
     responseplaylistReceived: (state, action) => {
       state.responseplaylist = action.payload;
-      state.justUpdated = true;
+      state.playlistcreated = true;
       state.searched = [];
     },
   },
@@ -178,6 +180,7 @@ export const adddummydatatoplaylist = (data, headers, id) =>
     url: `/addtoplaylist/`,
     data: data,
     headers,
+    onSuccess: changePosts.type,
   });
 
 export default slice.reducer;
