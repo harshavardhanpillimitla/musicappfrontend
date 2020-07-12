@@ -10,7 +10,7 @@ class AddPlaylist extends Component {
   componentDidUpdate() {
     if (this.props.success) {
       const jwt = this.props.user.token;
-      const { id, playlist_name } = this.props.playlistjustcreated;
+      const { id } = this.props.playlistjustcreated;
 
       if (jwt) {
         try {
