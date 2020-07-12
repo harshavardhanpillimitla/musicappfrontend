@@ -174,8 +174,8 @@ export const getplaylistdataforupdate = (headers, id) =>
   });
 export const adddummydatatoplaylist = (data, headers, id) =>
   actions.apicallbegan({
-    method: "PATCH",
-    url: `/addtoplaylist/${id}/`,
+    method: "POST",
+    url: `/addtoplaylist/`,
     data: data,
     headers,
   });

@@ -19,7 +19,7 @@ class AddPlaylist extends Component {
             Authorization: `JWT ${jwt}`,
           };
           let data = {
-            playlist_name: playlist_name,
+            playlist_name: id,
             playlistsongs: [],
           };
           this.props.dispatch(adddummydatatoplaylist(data, headers, id));
@@ -28,7 +28,7 @@ class AddPlaylist extends Component {
         }
       }
 
-      this.props.history.replace("/");
+      this.props.history.replace("/home");
     }
   }
 
