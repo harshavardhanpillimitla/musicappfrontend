@@ -153,7 +153,7 @@ export const deletesongfromplaylist = (data, headers, id) =>
 export const playlist = (data) =>
   actions.apicallbegan({
     method: "GET",
-    url: "/createplaylist/",
+    url: "/playlist/",
     onSuccess: playlistsReceived.type,
     headers: data,
   });

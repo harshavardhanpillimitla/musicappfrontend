@@ -20,6 +20,7 @@ class SongList extends Component {
   addtoplaylist = (songs) => {
     const jwt = this.props.user.token;
     const playlistid = this.props.state.id;
+    alert(playlistid);
 
     if (jwt) {
       try {
@@ -28,7 +29,7 @@ class SongList extends Component {
           Authorization: `JWT ${jwt}`,
         };
         const data = {
-          playlist_name: playlistid,
+          playlist_name: this.props.state.playlist_name.id,
           playlistsongs: songs,
         };
 
@@ -40,7 +41,7 @@ class SongList extends Component {
   };
   searchsong = (keyword) => {
     const jwt = this.props.user.token;
-    const playlistid = this.props.state.id;
+    const playlistid = this.props.state.playlist_name.id;
 
     if (jwt) {
       try {

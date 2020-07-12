@@ -28,7 +28,7 @@ class Register extends Component {
       //     alert('maybe success');
       //     this.props.history.replace('/')
       // })
-      this.dispatch(register(data));
+      this.props.dispatch(register(data));
     } catch (error) {
       console.log(error);
     }

@@ -14,7 +14,7 @@ class Post extends Component {
             <div className="row">
               <div className="col-6">
                 <Link to={playlisturl}>
-                  <div>playlist Name: {playlist_name}</div>
+                  <div>playlist Name: {playlist_name.playlist_name}</div>
                 </Link>
               </div>
             </div>
