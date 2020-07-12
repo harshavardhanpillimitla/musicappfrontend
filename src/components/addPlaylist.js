@@ -10,7 +10,7 @@ class AddPlaylist extends Component {
   componentDidUpdate() {
     if (this.props.success) {
       const jwt = this.props.user.token;
-      const id = this.props.playlistjustcreated.id;
+      const { id, playlist_name } = this.props.playlistjustcreated.id;
 
       if (jwt) {
         try {
@@ -18,7 +18,10 @@ class AddPlaylist extends Component {
             "Content-Type": "application/json",
             Authorization: `JWT ${jwt}`,
           };
-          let data = this.state;
+          let data = {
+            playlist_name: playlist_name,
+            playlistsongs: [],
+          };
           this.props.dispatch(adddummydatatoplaylist(data, headers, id));
         } catch (error) {
           console.log(error.response);
